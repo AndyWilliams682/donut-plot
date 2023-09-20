@@ -3,15 +3,6 @@ import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
 
-COLOR_MAP = pd.Series({
-    "C": 'rgb(153, 153, 153)',
-    "W": 'rgb(251, 188, 4)',
-    "U": 'rgb(66, 133, 244)',
-    "B": 'rgb(103, 78, 167)',
-    "R": 'rgb(234, 67, 53)',
-    "G": 'rgb(52, 168, 83)'
-}, name='Graph Color')
-
 
 def create_donut_plot(values, central_column, colors=[], center_top_slice=False):
     outer_columns = values.columns.drop(central_column)
@@ -33,7 +24,8 @@ def create_donut_plot(values, central_column, colors=[], center_top_slice=False)
 
     fig.add_trace(go.Pie(labels=[central_column],
                      values=values[central_column],
-                     marker_colors=central_color))
+                     marker_colors=central_color,
+                     marker_line=dict(color='#000000', width=1))
         
     fig.add_trace(go.Pie(labels=outer_columns,
                      values=values[outer_columns].iloc[0, :],
@@ -48,5 +40,11 @@ def create_donut_plot(values, central_column, colors=[], center_top_slice=False)
 
 
 if __name__ == '__main__':
-    values = pd.DataFrame([[5, 4, 1, 2, 1, 3]], columns=["C", "W", "U", "B", "R", "G"])
-    create_donut_plot(values, central_column='C', colors=COLOR_MAP, center_top_slice=True)
+    values = pd.DataFrame([[70, 3, 7, 20]], columns=['Success', 'Error 1', 'Error 2', 'Error 3'])
+    color_map = pd.Series({
+        'Success': 'rgb(100, 110, 250)',
+        'Error 1': 'rgb(179, 23, 44)',
+        'Error 2': 'rgb(245, 166, 130)',
+        'Error 3': 'rgb(102, 0, 31)'
+    }, name='Graph Color')
+    create_donut_plot(values, central_column='Success', colors=color_map, center_top_slice=True)
