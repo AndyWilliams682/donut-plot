@@ -19,4 +19,4 @@ You'd like to generate a plot that conveys 2 things:
 Using this plotting function, we can plot the Success count in the middle of the donut. This takes up a large area of the plot, which conveys that many of our tests ran without errors.
 The errors will then be plotted in the outer radius of the plot (the donut). This makes it easy to compare the prevalence of each error code in the tests that failed.
 
-![alt text](https://github.com/AndyWilliams682/donut-plot/blob/main/image.jpg?raw=true)
+![alt text](https://github.com/AndyWilliams682/donut-plot/blob/main/donut_plot.png)
